@@ -1,5 +1,7 @@
 # GCE IPX800 metrics exporter
 
+***WORK IN PROGRESS***
+
 This project contains a container image available at `` to expose the sensor values in Prometheus format.
 
 ## Configuration
