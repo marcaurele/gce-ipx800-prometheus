@@ -19,10 +19,10 @@ def gce_ipx800_metrics():
     """
     relays = ipx.relays
     analogs = ipx.analogs
-    data = f"""# HELP gce_ipx800_relays A metric for the relays
-# TYPE gce_ipx800_relays gauge
+    data = f"""# TYPE gce_ipx800_relays gauge
 gce_ipx800_relays{{host="{ipx_host}", relay="R1"}} {1 if relays[0].status else 0}
-gce_ipx800_relays{{host="{ipx_host}", relay="R6"\}} {1 if relays[5].status else 0}
+gce_ipx800_relays{{host="{ipx_host}", relay="R6"}} {1 if relays[5].status else 0}
+# TYPE gce_ipx800_analogs gauge
 gce_ipx800_analogs{{host="{ipx_host}", analog="A1"}} {round(analogs[0].as_tc100, 3)}
 gce_ipx800_analogs{{host="{ipx_host}", analog="A2"}} {round(analogs[1].as_tc100, 3)}
 """
