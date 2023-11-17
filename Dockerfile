@@ -68,7 +68,7 @@ RUN set -ex \
         /wheels/* \
     && rm -rf /var/cache/apk/*
 
-WORKDIR /app/metrics
+WORKDIR /app
 
 COPY ./metrics /app/metrics/
 
