@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gce-ipx800-prometheus"
-version = "0.1.0"
+version = "0.0.0"
 description = "wend endpoint exposing prometheus metrics for a GCE IPX800 device."
 authors = ["Marc-Aurèle Brothier <m@brothier.org>"]
 license = "Apache-2.0"

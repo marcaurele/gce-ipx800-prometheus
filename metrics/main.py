@@ -14,16 +14,37 @@ def gce_ipx800_metrics():
     """
     Return metrics for the GCE IPX800 device based on the entries to read from the environment
     variable `READ`.
-    `READ`: a comma separated list of sensor typ, sensor number, with the attribute to read. Example:
-    `READ=R6.status,R8.status,A1.as_tc4012,A2.value,C2.value`
+    `READ`: a comma separated list of sensor type, sensor number, with the attribute to read. Example:
+    `READ=R6,R1,A1.as_tc4012,A2.value,C1`
     """
-    relays = ipx.relays
-    analogs = ipx.analogs
-    data = f"""# TYPE gce_ipx800_relays gauge
-gce_ipx800_relays{{host="{ipx_host}", relay="R1"}} {1 if relays[0].status else 0}
-gce_ipx800_relays{{host="{ipx_host}", relay="R6"}} {1 if relays[5].status else 0}
-# TYPE gce_ipx800_analogs gauge
-gce_ipx800_analogs{{host="{ipx_host}", analog="A1"}} {round(analogs[0].as_tc100, 3)}
-gce_ipx800_analogs{{host="{ipx_host}", analog="A2"}} {round(analogs[1].as_tc100, 3)}
-"""
+    relays = []
+    analogs = []
+    counters = []
+    for value in os.getenv("READ", "").split(","):
+        if value.startswith("A"):
+            analogs.append(value.split("."))
+        elif value.startswith("R"):
+            relays.append(value)
+        elif value.startswith("C"):
+            counters.append(value)
+
+    data = ""
+    if analogs:
+        data += "# TYPE gce_ipx800_analogs gauge\n"
+        for a in analogs:
+            idx = int(a[0][1:])
+            attribute = a[1]
+            data += f'gce_ipx800_sensors{{host="{ipx_host}", analog="{a[0]}"}} {round(getattr(ipx.analogs[idx-1], attribute), 3)}\n'
+    if counters:
+        data += "# TYPE gce_ipx800_counters counter\n"
+        for c in counters:
+            idx = int(c[1:])
+            data += f'gce_ipx800_counters{{host="{ipx_host}", counter="{c}"}} {ipx.counters[idx-1].value}\n'
+    if relays:
+        data += "# TYPE gce_ipx800_relays gauge\n"
+        data += "# HELP gce_ipx800_relays Status of the relay, either 0=OFF or 1=ON depending on its status\n"
+        for r in relays:
+            idx = int(r[1:])
+            data += f'gce_ipx800_relays{{host="{ipx_host}", relay="{r}"}} {int(ipx.relays[idx-1].status)}\n'
+
     return Response(content=data, media_type="text/plain")
