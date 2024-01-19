@@ -34,7 +34,7 @@ def gce_ipx800_metrics():
         for a in analogs:
             idx = int(a[0][1:])
             attribute = a[1]
-            data += f'gce_ipx800_sensors{{host="{ipx_host}", analog="{a[0]}"}} {round(getattr(ipx.analogs[idx-1], attribute), 3)}\n'
+            data += f'gce_ipx800_analogs{{host="{ipx_host}", analog="{a[0]}"}} {round(getattr(ipx.analogs[idx-1], attribute), 3)}\n'
     if counters:
         data += "# TYPE gce_ipx800_counters counter\n"
         for c in counters:

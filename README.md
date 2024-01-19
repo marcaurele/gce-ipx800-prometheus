@@ -12,7 +12,7 @@ Currently it can expose:
 
 ## Configuration
 
-It an expose all IPX800 values, or it can only return a subset of them by defining the environment varialbe `READ` as a comma separated list of sensor type and index value, with the attribute to read. An example would be:
+It an expose all IPX800 values, or it can only return a subset of them by defining the environment variable `READ` as a comma separated list of sensor type and index value, with the attribute to read. An example would be:
 
 ```console
 docker run --rm \
