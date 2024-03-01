@@ -15,7 +15,7 @@ gce-ipx800 = "^0.5.2"
 
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.1.15"
+ruff = "^0.3.0"
 
 [build-system]
 requires = ["poetry-core"]
