@@ -187,13 +187,13 @@ all = ["email_validator (>=2.0.0)", "httpx (>=0.23.0)", "itsdangerous (>=1.1.0)"
 
 [[package]]
 name = "gce-ipx800"
-version = "0.5.2"
+version = "0.6.0"
 description = "Library to interact with the GCE Electronics IPX800 device"
 optional = false
-python-versions = ">=3.8,<4.0"
+python-versions = "<4.0,>=3.8"
 files = [
-    {file = "gce_ipx800-0.5.2-py3-none-any.whl", hash = "sha256:ee217dd0a2959cb8a18846b4e75a44e8fcc33f6c1993c921c2ac2baef53b4681"},
-    {file = "gce_ipx800-0.5.2.tar.gz", hash = "sha256:e40cc9fe0cc64373da70523688f9cd05fa7161ea92f602717d2ed3a44aa3f98e"},
+    {file = "gce_ipx800-0.6.0-py3-none-any.whl", hash = "sha256:3dac837110e1800189ca3dcfe4a8b09383cc9497c7a8433508ff4e233206c302"},
+    {file = "gce_ipx800-0.6.0.tar.gz", hash = "sha256:3cfc4ba142e359027b5a9d90d8dcaef221ce69d3466ead71aea834d5bb9fe31b"},
 ]
 
 [package.dependencies]
@@ -482,4 +482,4 @@ standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)",
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "c408630953bc9dce70a3c2757664e0901b2bcefcaab7095c42f2ae39a36d0968"
+content-hash = "fc01655f4fe90ed3d91f7ffa73b824518682371fc09816f032b55bc91efb9334"
