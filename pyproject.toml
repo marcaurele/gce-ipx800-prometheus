@@ -10,7 +10,7 @@ readme = "README.md"
 python = "^3.12"
 fastapi = "^0.115.0"
 urllib3 = "^2.2.2"
-uvicorn = "^0.30.4"
+uvicorn = "^0.30.6"
 gce-ipx800 = "^0.6.0"
 
 
