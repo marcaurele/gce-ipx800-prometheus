@@ -6,7 +6,7 @@
 ####################
 # BACKEND BUILDER #
 ####################
-FROM python:3.12-alpine as builder
+FROM python:3.13-alpine as builder
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
@@ -45,7 +45,7 @@ RUN set -ex \
 #################
 # Runtime stage #
 #################
-FROM python:3.12-alpine as production
+FROM python:3.13-alpine as production
 
 ARG version=development
 ENV VERSION=${version}
