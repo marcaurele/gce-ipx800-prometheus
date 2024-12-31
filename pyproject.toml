@@ -1,22 +1,13 @@
-[tool.poetry]
+[project]
 name = "gce-ipx800-prometheus"
 version = "0.0.0"
-description = "wend endpoint exposing prometheus metrics for a GCE IPX800 device."
-authors = ["Marc-Aurèle Brothier <m@brothier.org>"]
-license = "Apache-2.0"
+description = "Endpoint exposing prometheus metrics for a GCE IPX800 device"
 readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.12"
-fastapi = "^0.115.5"
-urllib3 = "^2.2.3"
-uvicorn = "^0.32.1"
-gce-ipx800 = "^0.6.0"
-
-
-[tool.poetry.group.dev.dependencies]
-ruff = "^0.8.1"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+license = "Apache-2.0"
+authors = ["Marc-Aurèle Brothier <m@brothier.org>"]
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.6",
+    "gce-ipx800>=0.7.0",
+    "uvicorn>=0.34.0",
+]
