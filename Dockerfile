@@ -36,4 +36,4 @@ USER prometheus
 
 EXPOSE 8333
 
-CMD ["uv", "run", "uvicorn", "metrics.main:app", "--host", "0.0.0.0", "--port", "8333"]
+CMD ["uv", "run", "--no-cache", "--offline", "uvicorn", "metrics.main:app", "--host", "0.0.0.0", "--port", "8333"]
