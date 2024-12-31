@@ -31,20 +31,24 @@ def gce_ipx800_metrics():
     data = ""
     if analogs:
         data += "# TYPE gce_ipx800_analogs gauge\n"
+        data += "# HELP gce_ipx800_analogs Value of the analog sensors\n"
         for a in analogs:
             idx = int(a[0][1:])
             attribute = a[1]
             data += f'gce_ipx800_analogs{{host="{ipx_host}", analog="{a[0]}"}} {round(getattr(ipx.analogs[idx-1], attribute), 3)}\n'
     if counters:
-        data += "# TYPE gce_ipx800_counters counter\n"
+        data += "# TYPE gce_ipx800_counters_total counter\n"
+        data += "# HELP gce_ipx800_counters_total Value of the counters\n"
         for c in counters:
             idx = int(c[1:])
-            data += f'gce_ipx800_counters{{host="{ipx_host}", counter="{c}"}} {ipx.counters[idx-1].value}\n'
+            data += f'gce_ipx800_counters_total{{host="{ipx_host}", counter="{c}"}} {ipx.counters[idx-1].value}\n'
     if relays:
-        data += "# TYPE gce_ipx800_relays gauge\n"
-        data += "# HELP gce_ipx800_relays Status of the relay, either 0=OFF or 1=ON depending on its status\n"
+        data += "# TYPE gce_ipx800_relays_state gauge\n"
+        data += "# HELP gce_ipx800_relays_state Status of the relay, either 0=OFF or 1=ON\n"
         for r in relays:
             idx = int(r[1:])
-            data += f'gce_ipx800_relays{{host="{ipx_host}", relay="{r}"}} {int(ipx.relays[idx-1].status)}\n'
+            data += f'gce_ipx800_relays_state{{host="{ipx_host}", relay="{r}"}} {int(ipx.relays[idx-1].status)}\n'
 
-    return Response(content=data, media_type="text/plain")
+    data += "# EOF\n"
+
+    return Response(content=data, media_type="text/plain; version=0.0.4; charset=utf-8")
