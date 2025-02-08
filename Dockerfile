@@ -1,37 +1,27 @@
-###############
-# BUILD STAGE #
-# Put here any build steps in order to not install building tools into the final image
-###############
-
-####################
-# BACKEND BUILDER #
-####################
-FROM python:3.13-alpine as builder
+FROM python:3.13-alpine3.21
 
 ARG version=development
 ENV VERSION=${version}
 
 ENV PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1
-
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
-
-WORKDIR /app
-
-COPY pyproject.toml uv.lock ./
-
-ENV APP_VENV=/app/.venv \
+    PYTHONDONTWRITEBYTECODE=1 \
+    UV_COMPILE_BYTECODE=1 \
+    APP_VENV=/app/.venv \
     PATH="/app/.venv/bin:${PATH}" \
     PYTHONPATH="${PYTHONPATH}:/app/metrics/"
 
-RUN set -ex \
-    && adduser -D prometheus \
-    && uv sync --frozen \
-    && rm -rf /var/cache/apk/*
+WORKDIR /app
+
+RUN adduser -D prometheus
+
+COPY --from=ghcr.io/astral-sh/uv:0.5.29 /uv /bin/
+
+COPY pyproject.toml uv.lock ./
+
+RUN uv sync --frozen
 
 COPY ./metrics /app/metrics/
 
-# Switch to non-root user
 USER prometheus
 
 EXPOSE 8333
