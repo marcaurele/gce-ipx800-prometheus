@@ -18,7 +18,7 @@ COPY --from=ghcr.io/astral-sh/uv:0.5.29 /uv /bin/
 
 COPY pyproject.toml uv.lock ./
 
-RUN uv sync --frozen
+RUN --mount=type=tmpfs,target=/tmp uv sync --frozen
 
 COPY ./metrics /app/metrics/
 
