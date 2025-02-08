@@ -8,7 +8,7 @@ ENV PYTHONUNBUFFERED=1 \
     UV_COMPILE_BYTECODE=1 \
     APP_VENV=/app/.venv \
     PATH="/app/.venv/bin:${PATH}" \
-    PYTHONPATH="${PYTHONPATH}:/app/metrics/"
+    PYTHONPATH="/app/metrics/"
 
 WORKDIR /app
 
