@@ -1,0 +1,33 @@
+---
+name: Build Container Image
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-container:
+    name: Push container image to multiple registries
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+      
+      - name: Extract metadata (tags, labels) for image
+        id: meta
+        uses: docker/metadata-action@369eb591f429131d6889c46b94e711f089e6ca96
+        with:
+          images: |
+            marcaurele/gce-ipx800-prometheus
+            ghcr.io/${{ github.repository }}
+      
+      - name: Build container image
+        uses: docker/build-push-action@ca877d9245402d1537745e0e356eab47c3520991
+        with:
+          context: .
+          push: false
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
