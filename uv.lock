@@ -116,14 +116,14 @@ wheels = [
 
 [[package]]
 name = "gce-ipx800"
-version = "0.7.0"
+version = "0.8.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "requests" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/a8/6a/84b7adc19a13e1ac396d3c4a317b202fdfb90425cd2d759a7b5d9397cb59/gce_ipx800-0.7.0.tar.gz", hash = "sha256:1f1bf0fca54e8e346e3ffefacbf266a81badca240996924568cf4909ae990995", size = 7613, upload-time = "2024-12-08T15:07:28.668Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/98/26/53bca8c351c0e1f4f2b0746fb0a23c98aa99de9d66f1727b309626edb1b5/gce_ipx800-0.8.0.tar.gz", hash = "sha256:7384834ce8f49fcf6b76bb1473cfebadf6b98aaa98d0524e3e32ac4ff862b720", size = 47454, upload-time = "2026-03-28T22:29:52.146Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/00/26/c65ecf21a448ad5f3005bfee7213565aa9d51812098732f996efa6ddfd7f/gce_ipx800-0.7.0-py3-none-any.whl", hash = "sha256:57904d1e2de6c7682d193e4f67e6e55df42f55d040c2f448eff3535177fd74d3", size = 8094, upload-time = "2024-12-08T15:07:27.116Z" },
+    { url = "https://files.pythonhosted.org/packages/17/27/a7d52ccbddca2a320a98479b1c2346cc27838304fbb7d4c920743b2de730/gce_ipx800-0.8.0-py3-none-any.whl", hash = "sha256:2d8fb5c39e2726449101dacae3ac1aac10f9c8bbff6a940c38112ec112094afd", size = 15964, upload-time = "2026-03-28T22:29:53.17Z" },
 ]
 
 [[package]]
@@ -139,7 +139,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "fastapi", specifier = ">=0.115.6" },
-    { name = "gce-ipx800", specifier = ">=0.7.0" },
+    { name = "gce-ipx800", specifier = ">=0.8.0" },
     { name = "uvicorn", specifier = ">=0.34.0" },
 ]
 

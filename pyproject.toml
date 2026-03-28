@@ -8,6 +8,6 @@ authors = ["Marc-Aurèle Brothier <m@brothier.org>"]
 requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.115.6",
-    "gce-ipx800>=0.7.0",
+    "gce-ipx800>=0.8.0",
     "uvicorn>=0.34.0",
 ]

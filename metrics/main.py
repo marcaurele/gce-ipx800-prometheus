@@ -2,7 +2,7 @@ import os
 
 from fastapi import FastAPI, Response
 
-from ipx800 import ipx800
+from gce_ipx800 import ipx800
 
 app = FastAPI()
 ipx_host = os.getenv("IPX_API_URL")
